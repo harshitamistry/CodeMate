@@ -1,0 +1,458 @@
+@CHARSET "ISO-8859-1";
+html{ height:100%; }
+body { 
+	height:100%;
+	margin:0;
+}
+
+
+#signupContainer{
+	height:calc(100% - 70px);
+	overflow-y:auto;
+	padding-bottom:10px;
+}
+
+#errorMessages > li{
+	color:#a94442;
+}
+
+.header{
+	background-color:#2A3F54;
+}
+
+#footerContent{
+	text-align:center;
+	color:#dddddd;
+	padding:10px;
+	font-size:0.75em;
+}
+
+#wrap-for-footer {
+   min-height: -webkit-calc(100% - 70px);     /* Chrome*/
+   min-height: -moz-calc(100% - 70px);     /* Firefox*/
+   min-height: calc(100% - 70px);     /* native*/
+/*     min-height: 100%; */
+   height:calc(100% - 70px);
+   overflow-y:hidden;
+}
+.footer{
+	background-color:#2A3F54;
+	width:100%;
+	height:70px;
+	position: relative;
+    clear:both;
+}
+.headerImage{
+	margin:10px;
+}
+.login{
+	margin-top:20px;
+}
+.btn:focus {outline:none;}
+
+.loginButton{
+	background-color:#26B99A;
+	color:#FFFFFF;
+	border:1px solid #169F85;
+}
+.loginButton:focus{
+	color:#DDDDDD;
+}
+.vertLine{
+	margin-left:10px;
+	margin-right:10px;
+	border-right:2px solid #999999;
+}
+.loginButtons{
+	border-left:2px solid #999999;
+	border-right:2px solid #999999;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
+#googleBtn{
+	background-image:url('../_images/googleLogin.png');
+	background-size:100% auto;
+}
+#facebookBtn{
+	background-image:url('../_images/fbLogin.png');
+	background-size:100% auto;
+	margin-left:10px;
+}
+.DD{
+	display:table;
+	margin-top:20px; 
+	background:none;
+	border:none;
+	float:left;
+}
+#userDDCol{
+	padding-left:0px;
+}
+.titleDD{
+	display:table-cell;
+	vertical-align:middle;
+	color:white;
+}
+#userNameDD{
+	padding-left:30px;
+}
+#userImageDD{
+	display:table-cell;
+	vertical-align:middle;
+}
+.btn:hover{
+	color:#2A3F54;
+}
+.DDul{
+	background-color:#2A3F54;
+}
+.DDul>li>a:hover{
+	background:#FFFFFF;
+	color:#2A3F54;
+}
+.DDul>li>a{
+	color:#FFFFFF;
+}
+
+.circleDiv{
+	border-radius: 50%;
+	width: 30px;
+    height: 30px;
+    background: white;
+    padding:1px;
+}
+#userImage{
+	width:100%;
+	height:100%;
+}
+.imgSize{
+	height:30px;
+	width:30px;
+}
+.tooltip{
+	width:200px;
+}
+.dropdownmenu{
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+.tooltip.right .tooltip-arrow{
+	left:0;
+	bottom:50%;
+	margin-bottom:-5px;
+	 border-right-color: #26B99A;
+}
+.tooltip-inner{
+	background-color:#26B99A;
+}
+.error-tooltip-inner{
+	background-color:#AA1111;
+}
+.error-tooltip-arrow{
+	background-color:#AA1111;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute; 
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  padding-right:20px;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+/* style for home page */
+
+.customLink{
+	text-decoration: none !important;
+}
+.customLink:hover{
+	text-decoration: none !important;
+}
+.caption{
+	text-align:center;
+}
+.thumbnail{
+	padding:20px;
+}
+
+.thumbnail:hover{
+	background-color: #26B99A;
+}
+
+.thumbnail_image{
+	width:30%;
+	height:30%;
+}
+/* End style for home page*/
+
+
+/* style for tutorial page */
+.tutorial_containers{
+    height: calc(100% - 70px);
+    width:100%;
+    overflow-y:hidden;
+}
+
+/* .tutorial_containers > .row{ */
+/* 	height:100%; */
+/* 	margin-bottom:0px; */
+/* } */
+/* .tutorial_containers > .row > div[class^="col-"]{ */
+/* 	height:100%; */
+/* 	margin:0px; */
+/* } */
+
+.tutPanels{
+	height:100%;
+}
+.tutorial{
+	width:30%;
+	vertical-align:top;
+	height:100%;
+	padding:0;
+	margin:0;
+	border-style: solid;
+    border-width: 5px;
+    border-color:#16262c;
+    float:left;
+}
+
+.codeeditor{
+	width:40%;
+	vertical-align:top;
+	height:100%;
+	border-style: solid;
+    border-width: 5px;
+    border-color:#16262c;
+    float:left;
+}
+
+
+.terminal{
+	width:30%;
+	vertical-align:top;
+	height:100%;
+	margin:0;
+	padding:0;
+	padding-bottom:0px;
+	border-style: solid;
+    border-width: 5px;
+    border-color:#16262c;
+    float:left;
+}
+
+.terminalStyle{
+	background:black;
+	color:white;
+	font-family: "Lucida Console";
+	font-size:14px;
+	height:100%;
+	margin:0;
+	padding:0;
+
+/* 	box-shadow: 0 0 10px blue; */
+}
+#output{
+	background:none;
+	color:white;
+	border:none;
+	margin:0;
+	height:100%;
+	white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+#tutorialContent{
+	padding:10px;
+	height:70%;
+	scroll:auto;
+	overflow-y:scroll;
+}
+#tutorialExercise{
+	height:30%;
+	margin:0;
+	scroll:auto;
+	box-shadow:none;
+	border:none;
+}
+.editor{
+	height:90%;
+}
+.CodeMirror{
+	overflow-y:hidden !important;
+}
+.action_buttons{
+	position:relative;
+	clear:both;
+	width:100%;
+	height:10%;
+	bottom:0;
+}
+
+.blue_modal_header{
+	background:#2A3F54;
+	color:white;
+}
+
+.green_modal_header{
+	background:#26B99A;
+	color:white;
+}
+
+.red_modal_header{
+	background:#800000;
+	color:white;
+}
+
+.run_message{
+	float:left;
+	margin-left:10px;
+}
+.run_smiley{
+	float:left;
+	height:32px;
+	width:32px;
+}
+
+.white_close_button{
+	color:white;
+	background-color:white;
+	background:none;
+}
+.white_close_button:hover{
+	color:white;
+	background-color:white;
+	background:none;
+}
+.modal-content{
+	overflow:hidden;
+}
+.action_btn{
+	border-radius:0;
+	height:100%;
+	width:50%;
+	margin:0;
+	padding:0;
+	font-size:1.5em;
+	bottom:0px;
+	font-family:Sans-Serif;
+}
+#run{
+	float:right;
+}
+#hint{
+	float:left;
+}
+#tutorialExercise > .panel-heading{
+	background:none;
+	background-color:#2A3F54;
+	text-align:center;
+	color:#CCCCCC;
+	border:none;
+	border-radius:0px;
+}
+
+#questionBody{
+	height:calc(100% - 40px);
+	overflow-y:auto;
+	padding-bottom:50px;
+}
+
+.textTutorialNext{
+	margin-bottom:0px;
+	margin-left:0px;	
+}
+
+.textTutorialMain{
+	height:calc(100% - 70px);
+		overflow-y:auto;
+}
+.textTutorial{
+	padding-bottom:0px;
+	height:100%;
+}
+.textTutorialCol{
+}
+
+.dynamicImages{
+	display:block;
+	margin:10px;
+}
+.tutorialTextContent{
+	display:block;
+	
+}
+#textTutorialContent{
+	height: 100%;
+	width:100%;
+}
+#nextLessonText{
+	margin-bottom:10px;
+}
+/* End style for tutorial page */
+
+
+
+/* CSS for learn list page */
+
+a.learnlist:hover{
+	background-color: #26B99A;
+}
+a.list-group-item{
+	overflow:auto;
+}
+a.list-group-item .list-group-item-heading,a.list-group-item .list-group-item-text{
+	color:#2A3F54;
+}
+/* END CSS for learn list page */
+
+
+/* emoticons style*/
+.emoticons{
+	height:40px;
+	float:right;
+}
+/* END emoticons style*/
+
+
+/* practice page style */
+.practiceTab{
+	width:33%;
+}
+
+
+/* end practice page style */
+
+/* problem-display style*/
+#problemContent{
+	padding:10px;
+	height:100%;
+	scroll:auto;
+	overflow-y:scroll;
+}
+#test{
+	float:left;
+}
+#programSubmit{
+	float:left;
+}
+/* end problem-display style */
