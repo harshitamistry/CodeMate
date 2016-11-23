@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dao.DAO;
+
 /**
  * Servlet implementation class UserServlet. This class is responsible for
  * performing all the user related actions in the database.
@@ -21,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/codemate";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/hibernateCodeMate";
 	public static String username;
 
 	/**
@@ -114,105 +116,16 @@ public class UserServlet extends HttpServlet {
 			String problemId = request.getParameter("problemId");
 			boolean accept = Boolean
 					.parseBoolean(request.getParameter("solAccept"));
+			DAO userDAO = new DAO();
 			if (accept) {
-				insertSolutionSubmit(request, problemId, true, "successful");
+				userDAO.insertSolutionSubmit(problemId, true, "successful",
+						(int) request.getSession().getAttribute("userId"));
 			} else {
-				insertSolutionSubmit(request, problemId, false,
-						"unsuccessful");
+				userDAO.insertSolutionSubmit(problemId, false, "unsuccessful",
+						(int) request.getSession().getAttribute("userId"));
 			}
 
 		}
-	}
-
-	/**
-	 * Inserts the solution details in the database if the solution is accepted
-	 * or not.
-	 * 
-	 * @param request
-	 *            http servlet request
-	 * @param problemId
-	 *            id of a problem
-	 * @param accepted
-	 *            if solution is accepted or not
-	 * @param message
-	 *            message from solution
-	 */
-	protected void insertSolutionSubmit(HttpServletRequest request,
-			String problemId, Boolean accepted, String message) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
-			Statement stmt = conn.createStatement();
-			String sql = "";
-			HttpSession session = request.getSession();
-
-			// Solution is accepted. Now check if user has already successfully
-			// solved this problem before.
-			if (accepted) {
-				sql = "SELECT * FROM submission WHERE ProblemID = " + problemId
-						+ " AND UserID =" + session.getAttribute("userId");
-				ResultSet rsAccept = stmt.executeQuery(sql);
-
-				// get problem points
-				sql = "SELECT ProblemPoints FROM problems WHERE ProblemID="
-						+ problemId;
-				Statement stmtProblem = conn.createStatement();
-				ResultSet rs = stmtProblem.executeQuery(sql);
-				rs.next();
-				String points = rs.getString("ProblemPoints");
-				rs.close();
-
-				// user has not solved it.
-				if (!rsAccept.isBeforeFirst()) {
-
-					// insert in the submission table
-					sql = "INSERT INTO submission(Accepted,Message,ProblemID,UserID,Points) VALUES ("
-							+ 1 + ",'" + message + "'," + problemId + ","
-							+ session.getAttribute("userId") + "," + points
-							+ ")";
-					stmt.execute(sql);
-				} else {
-					rsAccept.next();
-
-					// user has solved it and it was unsuccessful before.
-					int successful = rsAccept.getInt("Accepted");
-					if (successful == 0) {
-						sql = "UPDATE submission SET Accepted=1, Points ="
-								+ points + ",Message='" + message
-								+ "' WHERE ProblemID = " + problemId
-								+ " AND UserID ="
-								+ session.getAttribute("userId");
-						stmt.execute(sql);
-
-					}
-
-				}
-			} else {
-
-				// Solution is not accepted. Now check if user has already
-				// successfully solved this problem before.
-				sql = "SELECT * FROM submission WHERE ProblemID = " + problemId
-						+ " AND UserID =" + session.getAttribute("userId");
-				System.out.print("unsucessful solved");
-				ResultSet rsAccept = stmt.executeQuery(sql);
-				if (!rsAccept.isBeforeFirst()) {
-
-					// insert in the submission table
-					sql = "INSERT INTO submission(Accepted,Message,ProblemID,UserID,Points) VALUES ("
-							+ 0 + ",'" + message + "'," + problemId + ","
-							+ session.getAttribute("userId") + "," + 0 + ")";
-					stmt.execute(sql);
-				}
-
-			}
-			stmt.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	/**

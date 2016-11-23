@@ -17,14 +17,12 @@
 
 			<div id="problemContent" data-id="<%=request.getParameter("id")%>">
 
-				<sql:query dataSource="${snapshot}" var="tutContent">
-  				SELECT * FROM problems WHERE ProblemID= <%=request.getParameter("id")%>;
-   			</sql:query>
+			
 				<h2>
-					<c:out value="${tutContent.rows[0].ProblemName}" />
+					<c:out value="${practiceProblem.problemName}" />
 				</h2>
 				<p>
-					<c:out value="${tutContent.rows[0].ProblemQuestion}"
+					<c:out value="${practiceProblem.problemQuestion}"
 						escapeXml="false" />
 				</p>
 			</div>
@@ -54,8 +52,8 @@
 						<div class="modal-body ">Good job! You have passed all testcases.</div>
 						<div class="modal-footer">
 						
-						<button type="button" onclick="window.location='/CodeMate/Home.jsp;'" class="btn loginButton"> Home</button>
-						<button type="button" onclick="window.location='/CodeMate/practice.jsp;'" class="btn loginButton"> Practice problems</button>
+						<button type="button" onclick="window.location='/CodeMateMVC/Home.jsp;'" class="btn loginButton"> Home</button>
+						<button type="button" onclick="window.location='/CodeMateMVC/Practice;'" class="btn loginButton"> Practice problems</button>
 					
 						</div>
 					</div>

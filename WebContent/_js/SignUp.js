@@ -32,7 +32,7 @@ $(function(){
 	
 	$('select#countryDropDown').change(function(){
 		
-		 var country_name = $('select#countryDropDown option:selected').val();
+		 var country_name = $('select#countryDropDown option:selected').text();
 		 $.get("DbServlet",$.param({query:"load_schools",countryname:country_name}),
 				 function(response) {
 			 	

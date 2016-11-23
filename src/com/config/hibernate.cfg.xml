@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hibernateCodeMate?serverTimezone=UTC</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">1234</property>
+
+		<!-- Set the database dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Drop and re-create the database schema on startup -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- Name the annotated Entity classes -->
+		<mapping class="com.beans.Country" />
+		<mapping class="com.beans.School" />
+		<mapping class="com.beans.User" />
+		<mapping class="com.beans.Awards" />
+		<mapping class="com.beans.Tutorial" />
+		<mapping class="com.beans.Calendar" />
+		<mapping class="com.beans.Contest" />
+		<mapping class="com.beans.Contestgroup" />
+		<mapping class="com.beans.Forumanswer" />
+		<mapping class="com.beans.Forumquestion" />
+		<mapping class="com.beans.Groups" />
+		<mapping class="com.beans.Images" />
+		<mapping class="com.beans.Problemresult" />
+		<mapping class="com.beans.Problems" />
+		<mapping class="com.beans.Submission" />
+		<mapping class="com.beans.Testcases" />
+		<mapping class="com.beans.ContestUser" />	
+		<mapping class="com.beans.ContestUserId" />	
+	</session-factory>
+</hibernate-configuration>

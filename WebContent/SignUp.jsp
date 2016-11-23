@@ -28,15 +28,11 @@
    </tr>
    <tr> <td colspan="2"> <input type="text" id="usereid" class="form-control" placeholder="EMAIL"> </td></tr>
    <tr><td>
-   
-  <sql:query dataSource="${snapshot}" var="result" >
-  SELECT CountryName,CountryID from country;
-   </sql:query> 
 
   <select class="selectpicker" id="countryDropDown">
-    <c:forEach var="country" items="${result.rows}">
+    <c:forEach var="country" items="${countryList}">
     
-    	<option ${country.CountryName == "Canada" ? 'selected = "selected"' : '' } value="<c:out value="${country.CountryID}"/>"><c:out value="${country.CountryName}"/></option>
+    	<option ${country.countryName == "Canada" ? 'selected = "selected"' : '' } value="<c:out value="${country.countryId}"/>"><c:out value="${country.countryName}"/></option>
    
     </c:forEach>
   </select>
@@ -44,16 +40,13 @@
    </td>
    <td>
    
-   <sql:query dataSource="${snapshot}" var="schoolRes">
-   	SELECT SchoolName,SchoolID from school s INNER JOIN country c ON c.CountryID=s.CountryID WHERE
-   	c.CountryName="Canada";
-   </sql:query>
+ 
    
   <select class="selectpicker" id="schoolDropDown">
   <option value="Select School"> Select School</option>
   <option value="Other"> Other </option>
-  <c:forEach var="schools" items="${schoolRes.rows}">
-  	<option value="<c:out value="${schools.SchoolID}"/>"> <c:out value="${schools.SchoolName}"/></option>
+  <c:forEach var="schools" items="${schoolList}">
+  	<option value="<c:out value="${schools.schoolId}"/>"> <c:out value="${schools.schoolName}"/></option>
   	</c:forEach>
    
   </select>

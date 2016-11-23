@@ -6,28 +6,23 @@
 	<div class="row">
 		<div class="col-sm-6 col-md-offset-2 col-md-8">
 			<div class="list-group ">
-				<sql:query dataSource="${snapshot}" var="result">
-  				SELECT * from tutorial;
-   			</sql:query>
+				
 
-				<sql:query dataSource="${snapshot}" var="resultUser">
-  				SELECT TutorialProgressID,TutorialCompleted from user WHERE UserHandle = '<%=session.getAttribute("userHandle")%>';
-   			</sql:query>
+			
 
-				<c:forEach var="tutorial" items="${result.rows}">
+				<c:forEach var="tutorial" items="${tutorialList}">
 					<c:choose>
-
 						<c:when
-							test="${resultUser.rows[0].TutorialProgressID > tutorial.TutorialID || 
-							resultUser.rows[0].TutorialCompleted == true}">
-							<a href="Tutorial.jsp?id=${tutorial.TutorialID}"
+							test="${resultUser.tutorial.tutorialId > tutorial.tutorialId || 
+							resultUser.tutorialCompleted == true}">
+							<a href="Tutorial?id=${tutorial.tutorialId}"
 								class="list-group-item learnlist">
 								<h4 class="list-group-item-heading">
-									<c:out value="${tutorial.TutorialName}" />
+									<c:out value="${tutorial.tutorialName}" />
 									<img class="emoticons" src="_images/tutFinished2.png">
 								</h4>
 								<p class="list-group-item-text ">
-									<c:out value="${tutorial.TutorialDescription}" />
+									<c:out value="${tutorial.tutorialDescription}" />
 								</p>
 
 							</a>
@@ -38,15 +33,15 @@
 							<c:choose>
 
 								<c:when
-									test="${resultUser.rows[0].TutorialProgressID == tutorial.TutorialID}">
-									<a href="Tutorial.jsp?id=${tutorial.TutorialID}"
+									test="${resultUser.tutorial.tutorialId == tutorial.tutorialId}">
+									<a href="Tutorial?id=${tutorial.tutorialId}"
 										class="list-group-item learnlist">
 										<h4 class="list-group-item-heading">
-											<c:out value="${tutorial.TutorialName}" />
+											<c:out value="${tutorial.tutorialName}" />
 											<img class="emoticons" src="_images/progress2.png">
 										</h4>
 										<p class="list-group-item-text">
-											<c:out value="${tutorial.TutorialDescription}" />
+											<c:out value="${tutorial.tutorialDescription}" />
 										</p>
 
 									</a>
@@ -57,10 +52,10 @@
 								<c:otherwise>
 									<a href="#" class="list-group-item learnlist disabled">
 										<h4 class="list-group-item-heading">
-											<c:out value="${tutorial.TutorialName}" />
+											<c:out value="${tutorial.tutorialName}" />
 										</h4>
 										<p class="list-group-item-text">
-											<c:out value="${tutorial.TutorialDescription}" />
+											<c:out value="${tutorial.tutorialDescription}" />
 										</p>
 
 

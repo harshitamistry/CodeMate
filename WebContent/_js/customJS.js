@@ -5,7 +5,7 @@ $(function () {
 	});
   $("#logout").click(function(){
 	  $.post("UserServlet",$.param({query:"logout"}));
-	  window.location="/CodeMate/SignUp.jsp";
+	  window.location="/CodeMateMVC/SignUp";
   });
   $('#loginButton').click(function(){
 	  var loginUname = $('#loginUname').val();

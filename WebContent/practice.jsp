@@ -21,95 +21,85 @@
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<%
-					String[] types = { "easy", "medium", "hard" };
-					for (String type : types) {
-						if (type.equals("easy")) {
-				%><div role="tabpanel" class="tab-pane active" id="<%=type%>">
-					<%
-						} else {
-					%><div role="tabpanel" class="tab-pane" id="<%=type%>">
-						<%
-							}
-						%>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Problem ID</th>
-									<th>Problem Title</th>
-									<th>Result</th>
-									<th>Points</th>
-									<th>Points Earned</th>
-								</tr>
-							</thead>
 
-
-							<%
-								String sql = "SELECT * FROM problems WHERE Complexity = '"
-											+ type + "' and ProblemType='Practice'";
-									try {
-										ResultSet rs = stmt.executeQuery(sql);
-										int problemNumber = 0;
-										while (rs.next()) {
-											problemNumber += 1;
-											 System.out.println(problemNumber); 
-
-							%>
+				<c:forEach items="${tutorialComplexity}" var="complexity">
+					<c:choose>
+						<c:when test="${complexity ==\"easy\"}">
+							<div role="tabpanel" class="tab-pane active" id="${complexity }"
+								name="probComplexity">
+						</c:when>
+						<c:otherwise>
+							<div role="tabpanel" class="tab-pane" id="${complexity }"
+								name="probComplexity">
+						</c:otherwise>
+					</c:choose>
+					<table class="table table-striped">
+						<thead>
 							<tr>
-								<td><%=problemNumber%></td>
-							    <td><a href="practiceProblem.jsp?id=<%=rs.getInt("ProblemID")%>"><%=rs.getString("ProblemName")%></a></td>
-								
-								<%
-									int problemPoints = rs.getInt("ProblemPoints");
-												String sqlProblem = "SELECT * FROM submission WHERE UserID ="
-														+ session.getAttribute("userId")
-														+ " AND ProblemID=" + rs.getInt("ProblemID");
-												Statement stmtProb=conn.createStatement();
+								<th>Problem ID</th>
+								<th>Problem Title</th>
+								<th>Result</th>
+								<th>Points</th>
+								<th>Points Earned</th>
+							</tr>
+						</thead>
 
-												ResultSet rsProblem = stmtProb.executeQuery(sqlProblem);
-												if (rsProblem.next()) {
-													System.out.print("solved by user");
+						<%
+							int problemNumber = 0;
+						%>
+						<c:forEach items="${problemList}" var="currentProblem">
+							<c:if test="${currentProblem.complexity == complexity}">
+								<%
+									problemNumber += 1;
 								%>
-								<td>
+
+
+								<tr>
+									<td><%=problemNumber%></td>
+									<td><a
+										href="/CodeMateMVC/practiceProblem?id=${currentProblem.problemId }">
+											<c:out value="${currentProblem.problemName}"></c:out>
+									</a></td>
+
+
 									<%
-										if (rsProblem.getBoolean("Accepted")) {
-									%>Successful<%
-										} else {
-									%> Unsuccessful <%
+										boolean solved = false;
+									%>
+									<c:forEach items="${userSubmission}" var="submission">
+										<c:if
+											test="${submission.problems.problemId == currentProblem.problemId}">
+											<%
+												solved = true;
+											%>
+											<td><c:choose>
+													<c:when test="${submission.accepted ==true}"> Successful</c:when>
+													<c:otherwise> Unsuccessful</c:otherwise>
+												</c:choose></td>
+											<td><c:out value="${ currentProblem.problemPoints}"></c:out></td>
+											<td><c:out value="${submission.points }"></c:out></td>
+										</c:if>
+									</c:forEach>
+									<td>
+										<%
+											if (solved == false) {
+										%> Not solved
+									</td>
+									<td><c:out value="${ currentProblem.problemPoints}"></c:out></td>
+									<td>0</td>
+									<%
 										}
 									%>
-								</td>
-								<td><%=problemPoints%></td>
-								<td><%=rsProblem.getInt("Points")%></td>
-								<%
-												} else {
-													System.out.print("not solved by user");
-								%>
-								<td>Not Solved</td>
-								<td><%=problemPoints%></td>
-								<td>0</td>
 
-								<%
-									}
-												rsProblem.close();
-								%>
-							</tr>
-							<%
-								}
-										rs.close();
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-							%>
-						</table>
-					</div>
-					<%
-						}
-					%>
-
-
-				</div>
+								</tr>
+							</c:if>
+						</c:forEach>
+					</table>
 			</div>
+			</c:forEach>
+
 		</div>
+
 	</div>
-	<%@include file="footer.jsp"%>
+</div>
+</div>
+<%@include file="footer.jsp"%>

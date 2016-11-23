@@ -456,3 +456,27 @@ a.list-group-item .list-group-item-heading,a.list-group-item .list-group-item-te
 	float:left;
 }
 /* end problem-display style */
+
+
+/* competitions page style*/
+#groupName{
+	margin-bottom:10px;
+}
+/* end competitions page style*/
+
+/* Forum page*/
+.searchQuestionsDropdown{
+	z-index:5;
+}
+/*end forum*/
+
+/* calendar page*/
+#calendarContainer{
+	height:calc(100% - 70px);
+	overflow-y:auto;
+	margin-bottom:10px;
+}
+/*end calendar page*/
+
+/* LeaderBoard */
+/* end Leaderboard*/

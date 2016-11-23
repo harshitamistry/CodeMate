@@ -10,90 +10,31 @@
 <!-- CodeMirror css -->
 <link rel="stylesheet" href="_css/codemirror.css">
 
-<%! 
-	public String checkTutorialCount(Statement stmt, HttpServletRequest request){
-		String sql = "SELECT count(*) FROM tutorial";
-		try{
-			ResultSet rs = stmt.executeQuery(sql);
-			rs.next();
-			int lastTutorial = rs.getInt(1);
-			System.out.println("count is"+lastTutorial);
-			rs.close();
-			if(lastTutorial == Integer.parseInt(request.getParameter("id"))){
-				return "finish";
-			}
-			else{
-				return "incomplete";
-			} 
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return "";
-		}
-	
-}
-%>
-<%
 
-String sql ="";
-try{
-
-	sql = "SELECT TutorialProgressID FROM user WHERE UserHandle='"
-			+ session.getAttribute("userHandle") + "'";
-	ResultSet rs = stmt.executeQuery(sql);
-	rs.next();
-	int userTutorial = rs.getInt("TutorialProgressID");
-	rs.close();
-
-	if (userTutorial < Integer.parseInt(request.getParameter("id"))) {
-		response.sendRedirect("/CodeMate/learn.jsp");
-	}
-
-	sql = "SELECT TutorialType FROM tutorial WHERE TutorialID="
-			+ request.getParameter("id");
-	rs = stmt.executeQuery(sql);
-	if(!rs.isBeforeFirst()){
-		rs.close();
-%>
-<script>
-window.location="/CodeMate/learn.jsp";
-</script>
-<%		
-	}
-	else{
-	rs.next();
-	String tutorialType = rs.getString("TutorialType");
-
-	rs.close();
-	if (tutorialType.equals("Program")) {
-%>
+<c:choose>
+<c:when test="${tutorial.tutorialType =='Program'}">
 <div class="tutorial_containers">
 			<div class="tutorial">
 
 			<div id="tutorialContent" data-id="<%=request.getParameter("id")%>">
 
-				<sql:query dataSource="${snapshot}" var="tutContent">
-  				SELECT TutorialName, TutorialContent from tutorial WHERE TutorialID = <%=request.getParameter("id")%>;
-   			</sql:query>
+
 				<h2>
-					<c:out value="${tutContent.rows[0].TutorialName}" />
+					<c:out value="${tutorial.tutorialName}" />
 				</h2>
 				<p>
-					<c:out value="${tutContent.rows[0].TutorialContent}"
+					<c:out value="${tutorial.tutorialContent}"
 						escapeXml="false" />
 				</p>
 			</div>
 			<div id="tutorialExercise" class="panel panel-default">
-				<sql:query dataSource="${snapshot}" var="tutExercise">
-  				SELECT * from problems p INNER JOIN exerciseProblem e ON p.ProblemID = e.ProblemID
-  				WHERE e.TutorialID = <%=request.getParameter("id")%>;
-   			</sql:query>
+				
 
 				<div class="panel-heading">
-					<c:out value="${tutExercise.rows[0].ProblemName}" />
+					<c:out value="${tutorialProblem.problemName}" />
 				</div>
 				<div class="panel-body" id="questionBody">
-					<c:out value="${tutExercise.rows[0].ProblemQuestion}"
+					<c:out value="${tutorialProblem.problemQuestion}"
 						escapeXml="false" />
 				</div>
 
@@ -121,7 +62,7 @@ window.location="/CodeMate/learn.jsp";
 							<h4 class="modal-title run_message" id="myModalLabel">Hint</h4>
 						</div>
 						<div class="modal-body ">
-							<c:out value="${tutExercise.rows[0].Hint}" />
+							<c:out value="${tutorialProblem.hint}" />
 						</div>
 					</div>
 				</div>
@@ -141,16 +82,15 @@ window.location="/CodeMate/learn.jsp";
 						</div>
 						<div class="modal-body ">You have success</div>
 						<div class="modal-footer">
-						<%
+						<c:choose>
+						<c:when test="${tutorialStatus ==\"finish\"}">
 						
-						String tutorialCount = checkTutorialCount(stmt,request); 
-						if(tutorialCount.equals("finish")){%>
 						<button type="button" id="finishBtn" data-toggle="modal" data-target=".bs-finish-modal-sm" class="btn loginButton">Finish</button>
-						<%} else{ %>
-						<button type="button" id="nextLesson" class="btn loginButton">Next
+</c:when>
+<c:otherwise>						<button type="button" id="nextLesson" class="btn loginButton">Next
 								lesson!</button>
-						<% }%>
-						</div>
+</c:otherwise>	
+</c:choose>					</div>
 					</div>
 				</div>
 			</div>
@@ -187,50 +127,38 @@ window.location="/CodeMate/learn.jsp";
 		</div>
 	</div>
 
-<%
-	} else {
-		//if tutorial type is not program
-%>
+						</c:when>
+
+						<c:otherwise>
 <div class="container-fluid textTutorialMain">
 	<div class="row textTutorial">
 		<div class="col-md-offset-2 col-md-8 textTutorial textTutorialCol panel">
 
 			<div id="textTutorialContent" data-id="<%=request.getParameter("id")%>">
 
-				<sql:query dataSource="${snapshot}" var="tutContent">
-  				SELECT TutorialName, TutorialContent from tutorial WHERE TutorialID = <%=request.getParameter("id")%>;
-   			</sql:query>
 				<h2>
-					<c:out value="${tutContent.rows[0].TutorialName}" />
+					<c:out value="${tutorial.tutorialName}" />
 				</h2>
 				<p>
-					<c:out value="${tutContent.rows[0].TutorialContent}"
+					<c:out value="${tutorial.tutorialContent}"
 						escapeXml="false" />
 				</p>
-				
-				<%
-						
-						String tutorialCount = checkTutorialCount(stmt,request); 
-						if(tutorialCount.equals("finish")){%>
+				<c:choose>
+										<c:when test="${tutorialStatus ==\"finish\"}">
+
 						<button type="button" id="finishBtn" data-toggle="modal" data-target=".bs-finish-modal-sm" class="btn loginButton">Finish</button>
-						<%} else{ %>
-						<button type="button" id="nextLessonText" class="btn loginButton">Next
+</c:when>
+<c:otherwise>						<button type="button" id="nextLessonText" class="btn loginButton">Next
 								lesson!</button>
-						<% }%>
-			</div>
+</c:otherwise>	
+</c:choose>		</div>
 			
 		</div>
 	</div>
 </div>
-<%
-	}
-	}
-}
-catch(Exception e){
-	e.printStackTrace();
-}
-%>
+						</c:otherwise>
 
+</c:choose>
 <!-- Complete tutorial pop up -->
 <div class="modal fade bs-finish-modal-sm" tabindex="-1"
 				role="dialog" aria-labelledby="mySmallModalLabel">

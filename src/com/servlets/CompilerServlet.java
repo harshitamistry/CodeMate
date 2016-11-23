@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.beans.Testcases;
+import com.dao.DAO;
 import com.google.gson.Gson;
 
 /**
@@ -96,22 +99,11 @@ public class CompilerServlet extends HttpServlet {
 	protected Boolean checkTestcaseResult(String testcaseId,
 			String testcaseOutput) {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
-			Statement stmt = conn.createStatement();
-			String sql = "";
-			sql = "SELECT output FROM testcases WHERE testcaseID="
-					+ testcaseId;
+			DAO compilerDao = new DAO();
+			Testcases testcase = compilerDao
+					.getTestcaseData(Integer.parseInt(testcaseId));
+			String dbTestcaseOp = testcase.getOutput();
 
-			ResultSet rs = stmt.executeQuery(sql);
-			String dbTestcaseOp = "";
-			if (rs.next()) {
-				dbTestcaseOp = rs.getString("output");
-			}
-			rs.close();
-			stmt.close();
-			conn.close();
 			if (dbTestcaseOp.equals(testcaseOutput)) {
 				return true;
 			} else {
@@ -135,31 +127,25 @@ public class CompilerServlet extends HttpServlet {
 	 *            ID of a problem
 	 * @return input stored in the database
 	 */
-	protected String getTestcaseInput(String testcaseType, String problemID) {
+	protected String getTestcaseInput(String testcaseType, String problemId) {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
-			Statement stmt = conn.createStatement();
-			String sql = "";
-			sql = "SELECT * FROM testcases WHERE type='" + testcaseType
-					+ "' AND problemID=" + problemID;
-			ResultSet rs = stmt.executeQuery(sql);
+
+			DAO testcaseInput = new DAO();
+			List<Testcases> testcases = testcaseInput.getTestcaseInputData(
+					testcaseType, Integer.parseInt(problemId));
 			ArrayList<String> inputList = new ArrayList<String>();
 			ArrayList<Integer> testcaseIdList = new ArrayList<Integer>();
-
-			while (rs.next()) {
-				inputList.add(rs.getString("input"));
-				testcaseIdList.add(rs.getInt("testcaseID"));
+			for (Testcases cases : testcases) {
+				inputList.add(cases.getInput());
+				testcaseIdList.add(cases.getTestcaseId());
 			}
+
 			Gson gson = new Gson();
 			String result = gson.toJson(inputList.toArray());
 			String testcaseID = gson.toJson(testcaseIdList.toArray());
 			String testcaseDict = "{\"testcases\":" + result
 					+ ",\"testcaseIDs\":" + testcaseID + "}";
-			rs.close();
-			stmt.close();
-			conn.close();
+
 			return testcaseDict;
 
 		} catch (Exception e) {

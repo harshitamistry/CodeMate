@@ -86,12 +86,12 @@ $(function(){
 		var tutorialIdValue = $("#tutorialContent").attr("data-id");
 		
 		$.post("UserServlet",{query:"goToNextLesson",currentTutorial: tutorialIdValue});
-		window.location="/CodeMate/Tutorial.jsp?id="+(parseInt(tutorialIdValue)+1);
+		window.location="/CodeMateMVC/Tutorial?id="+(parseInt(tutorialIdValue)+1);
 	});
 	$("#nextLessonText").click(function(){
 		var tutorialIdValue = $("#textTutorialContent").attr("data-id");
 		
 		$.post("UserServlet",{query:"goToNextLesson",currentTutorial: tutorialIdValue});
-		window.location="/CodeMate/Tutorial.jsp?id="+(parseInt(tutorialIdValue)+1);
+		window.location="/CodeMateMVC/Tutorial?id="+(parseInt(tutorialIdValue)+1);
 	})
 });

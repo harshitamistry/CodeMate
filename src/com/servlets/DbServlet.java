@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 public class DbServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/codemate";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/hibernateCodeMate";
 	public static String username;
 
 	/**

@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
-			<a class="customLink" href="/CodeMate/learn.jsp">
+			<a class="customLink" href="/CodeMateMVC/Learn">
 				<div class="thumbnail">
 					<img class="thumbnail_image" src="_images/learn.png" alt="learn">
 					<div class="caption">
@@ -19,7 +19,7 @@
 			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
-			<a class="customLink" href="practice.jsp">
+			<a class="customLink" href="/CodeMateMVC/Practice">
 				<div class="thumbnail">
 					<img class="thumbnail_image" src="_images/practice.png"
 						alt="practice">
@@ -31,23 +31,28 @@
 			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/compete.png" alt="compete">
-				<div class="caption">
-					<h3>Compete</h3>
-					<p>Compete here.</p>
+			<a class="customLink" href="/CodeMateMVC/Competitions">
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/compete.png"
+						alt="compete">
+					<div class="caption">
+						<h3>Compete</h3>
+						<p>Compete here.</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/leaderboard.png"
-					alt="leader board">
-				<div class="caption">
-					<h3>Leader Board</h3>
-					<p>Leader board is here.</p>
+			<a class="customLink" href="/CodeMateMVC/LeaderBoard">
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/leaderboard.png"
+						alt="leader board">
+					<div class="caption">
+						<h3>Leader Board</h3>
+						<p>Leader board is here.</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 	<div class="row">
@@ -62,23 +67,28 @@
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/forum.png" alt="forum">
-				<div class="caption">
-					<h3>Forum</h3>
-					<p>Forums here.</p>
+			<a class="customLink" href="Forum">
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/forum.png" alt="forum">
+					<div class="caption">
+						<h3>Forum</h3>
+						<p>Forums here.</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/calendar.png"
-					alt="calendar">
-				<div class="caption">
-					<h3>Calendar</h3>
-					<p>All events here.</p>
+			<a class="customLink" href="/CodeMateMVC/Calendar">
+
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/calendar.png"
+						alt="calendar">
+					<div class="caption">
+						<h3>Calendar</h3>
+						<p>All events here.</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
