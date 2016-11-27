@@ -1,13 +1,15 @@
 package com.beans;
 // Generated 5-Nov-2016 11:07:12 PM by Hibernate Tools 5.2.0.Beta1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ public class Awards implements java.io.Serializable {
 
 	private Integer titleId;
 	private String title;
-	private byte[] badgePicture;
+	private String badgePicture;
 	private Set<User> users = new HashSet<User>(0);
 
 	public Awards() {
@@ -31,7 +33,7 @@ public class Awards implements java.io.Serializable {
 		this.title = title;
 	}
 
-	public Awards(String title, byte[] badgePicture, Set<User> users) {
+	public Awards(String title, String badgePicture, Set<User> users) {
 		this.title = title;
 		this.badgePicture = badgePicture;
 		this.users = users;
@@ -59,11 +61,11 @@ public class Awards implements java.io.Serializable {
 	}
 
 	@Column(name = "BadgePicture")
-	public byte[] getBadgePicture() {
+	public String getBadgePicture() {
 		return this.badgePicture;
 	}
 
-	public void setBadgePicture(byte[] badgePicture) {
+	public void setBadgePicture(String badgePicture) {
 		this.badgePicture = badgePicture;
 	}
 

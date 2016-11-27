@@ -63,7 +63,7 @@ public class School implements java.io.Serializable {
 		this.schoolId = schoolId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CountryID", nullable = false)
 	public Country getCountry() {
 		return this.country;

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.beans.Awards;
 import com.beans.Contest;
 import com.beans.ContestUser;
 import com.beans.ContestUserId;
@@ -619,6 +620,28 @@ public class DAO {
 		session.update(user);
 		session.getTransaction().commit();
 		session.close();
+
+	}
+
+	public void giveAward(int userId) {
+		User user = getUser(userId);
+		int userPoints = user.getPoints();
+		Awards award = new Awards();
+		if (userPoints >= 500) {
+			award.setTitleId(3);
+		} else if (userPoints >= 200) {
+			award.setTitleId(2);
+		} else {
+			award.setTitleId(1);
+		}
+		user.setAwards(award);
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(user);
+		session.getTransaction().commit();
+		session.close();
+
+		// return user;
 
 	}
 

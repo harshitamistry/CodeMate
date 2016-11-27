@@ -333,6 +333,14 @@ body {
 	width:32px;
 }
 
+.profile_smiley{
+	height:42px;
+	width:42px;
+}
+.user_award_title{
+	font-size:3em;
+	font-weight:500;
+}
 .white_close_button{
 	color:white;
 	background-color:white;

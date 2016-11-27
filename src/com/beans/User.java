@@ -114,7 +114,7 @@ public class User implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TitleID", nullable = false)
 	public Awards getAwards() {
 		return this.awards;
@@ -124,7 +124,7 @@ public class User implements java.io.Serializable {
 		this.awards = awards;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SchoolID", nullable = false)
 	public School getSchool() {
 		return this.school;
