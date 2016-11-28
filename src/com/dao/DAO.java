@@ -33,148 +33,251 @@ public class DAO {
 			.configure("com/config/hibernate.cfg.xml").buildSessionFactory();
 
 	public List<Country> getCountryList() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
 
-		Query query = session.getNamedQuery("Country.allCountry");
-		// query.setParameter("department", department);
+		Session session = null;
+		List<Country> countryList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		List<Country> countryList = (List<Country>) query.getResultList();
+			Query query = session.getNamedQuery("Country.allCountry");
+			// query.setParameter("department", department);
 
-		session.getTransaction().commit();
-		session.close();
+			countryList = (List<Country>) query.getResultList();
 
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return countryList;
 
 	}
 
 	public List<User> getTopTen() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<User> countryList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("User.topTen");
-		// query.setParameter("department", department);
-		query.setMaxResults(10);
+			Query query = session.getNamedQuery("User.topTen");
+			// query.setParameter("department", department);
+			query.setMaxResults(10);
 
-		List<User> countryList = (List<User>) query.getResultList();
+			countryList = (List<User>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return countryList;
 
 	}
 
 	public List<User> getTopTenCountry(int countryId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<User> countryList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("User.topTenCountry");
-		query.setParameter("countryId", countryId);
-		query.setMaxResults(10);
+			Query query = session.getNamedQuery("User.topTenCountry");
+			query.setParameter("countryId", countryId);
+			query.setMaxResults(10);
 
-		List<User> countryList = (List<User>) query.getResultList();
+			countryList = (List<User>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return countryList;
 
 	}
 
 	public List<User> getTopTenSchool(int schoolId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<User> countryList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("User.topTenSchool");
-		query.setParameter("schoolId", schoolId);
-		query.setMaxResults(10);
+			Query query = session.getNamedQuery("User.topTenSchool");
+			query.setParameter("schoolId", schoolId);
+			query.setMaxResults(10);
 
-		List<User> countryList = (List<User>) query.getResultList();
+			countryList = (List<User>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return countryList;
 
 	}
 
 	public byte[] getUserFlag(int userId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		byte[] flag = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Country.getFlagOfUser");
-		query.setParameter("userId", userId);
-		byte[] flag = (byte[]) query.getSingleResult();
+			Query query = session.getNamedQuery("Country.getFlagOfUser");
+			query.setParameter("userId", userId);
+			flag = (byte[]) query.getSingleResult();
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
 		return flag;
 	}
 
 	public List<School> getSchoolList() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		// String sql = "select s from School s JOIN s.country c where
-		// c.countryName = 'Canada'";
-		// Query query = session.createQuery(sql);
-		Query query = session.getNamedQuery("School.countrySchool");
+		Session session = null;
+		List<School> schoolList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			// String sql = "select s from School s JOIN s.country c where
+			// c.countryName = 'Canada'";
+			// Query query = session.createQuery(sql);
+			Query query = session.getNamedQuery("School.countrySchool");
 
-		List results = query.getResultList();
-		List<School> schoolList = (List<School>) query.getResultList();
+			// List results = query.getResultList();
+			schoolList = (List<School>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return schoolList;
 	}
 
 	public List<Forumquestion> getQuestionList() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		// String sql = "select s from School s JOIN s.country c where
-		// c.countryName = 'Canada'";
-		// Query query = session.createQuery(sql);
-		Query query = session.getNamedQuery("Forumquestion.allQuestions");
+		Session session = null;
+		List<Forumquestion> schoolList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			// String sql = "select s from School s JOIN s.country c where
+			// c.countryName = 'Canada'";
+			// Query query = session.createQuery(sql);
+			Query query = session.getNamedQuery("Forumquestion.allQuestions");
 
-		List<Forumquestion> schoolList = (List<Forumquestion>) query
-				.getResultList();
+			schoolList = (List<Forumquestion>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return schoolList;
 	}
 
 	public List<Forumanswer> getAnswerList(int questionId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		// String sql = "select s from School s JOIN s.country c where
-		// c.countryName = 'Canada'";
-		// Query query = session.createQuery(sql);
-		Query query = session.getNamedQuery("Forumanswer.allAnswers");
-		query.setParameter("questionId", questionId);
-		List<Forumanswer> schoolList = (List<Forumanswer>) query
-				.getResultList();
+		Session session = null;
+		List<Forumanswer> schoolList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			// String sql = "select s from School s JOIN s.country c where
+			// c.countryName = 'Canada'";
+			// Query query = session.createQuery(sql);
+			Query query = session.getNamedQuery("Forumanswer.allAnswers");
+			query.setParameter("questionId", questionId);
+			schoolList = (List<Forumanswer>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return schoolList;
 	}
 
 	public List<Forumquestion> searchQuestionList(String keyword) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		// String sql = "select s from School s JOIN s.country c where
-		// c.countryName = 'Canada'";
-		// Query query = session.createQuery(sql);
-		Query query = session.getNamedQuery("Forumquestion.searchQuestions");
-		query.setParameter("keywords", "%" + keyword + "%");
+		Session session = null;
+		List<Forumquestion> schoolList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			// String sql = "select s from School s JOIN s.country c where
+			// c.countryName = 'Canada'";
+			// Query query = session.createQuery(sql);
+			Query query = session
+					.getNamedQuery("Forumquestion.searchQuestions");
+			query.setParameter("keywords", "%" + keyword + "%");
 
-		List results = query.getResultList();
-		List<Forumquestion> schoolList = (List<Forumquestion>) query
-				.getResultList();
+			List results = query.getResultList();
+			schoolList = (List<Forumquestion>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return schoolList;
 	}
@@ -185,57 +288,106 @@ public class DAO {
 	 * @return list of tutorial object.
 	 */
 	public List<Tutorial> getTutorialList() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Tutorial> tutorialList = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Tutorial.allTutorial");
+			Query query = session.getNamedQuery("Tutorial.allTutorial");
 
-		List<Tutorial> tutorialList = (List<Tutorial>) query.getResultList();
+			tutorialList = (List<Tutorial>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return tutorialList;
 
 	}
 
 	public Tutorial getTutorialDetails(int tutorialId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Tutorial tutorial = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Tutorial.tutorialDetails");
-		query.setParameter("tutId", tutorialId);
+			Query query = session.getNamedQuery("Tutorial.tutorialDetails");
+			query.setParameter("tutId", tutorialId);
+			tutorial = (Tutorial) query.getSingleResult();
 
-		Tutorial tutorial = (Tutorial) query.getSingleResult();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		session.getTransaction().commit();
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return tutorial;
 
 	}
 
-	public Problems getProblemForTutorial(int tutorialId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+	public boolean checkEmailValid(String userEmail, String userHandle) {
+		Session session = null;
+		boolean emailValid = false;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
+			Query query = session.getNamedQuery("User.checkEmailExist");
+			query.setParameter("userEmail", userEmail);
+			query.setParameter("currUserHandle", userHandle);
+
+			emailValid = (query.getResultList().size() == 0);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return emailValid;
+
+	}
+
+	public Problems getProblemForTutorial(int tutorialId) {
+		Session session = null;
 		Problems problem = null;
 		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
 			Query query = session.getNamedQuery("Problems.problemDetails");
 			query.setParameter("tutId", tutorialId);
 
 			problem = (Problems) query.getSingleResult();
 			session.getTransaction().commit();
-			session.close();
 
-			return problem;
 		} catch (Exception e) {
-			session.getTransaction().commit();
-			session.close();
-
-			return problem;
-
+			e.printStackTrace();
 		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return problem;
 
 	}
 
@@ -245,16 +397,27 @@ public class DAO {
 	 * @return list of user object.
 	 */
 	public List<User> getUserDetails(int uid) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<User> userDetails = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("User.allDetails");
-		query.setParameter("uId", uid);
+			Query query = session.getNamedQuery("User.allDetails");
+			query.setParameter("uId", uid);
 
-		List<User> userDetails = (List<User>) query.getResultList();
+			userDetails = (List<User>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return userDetails;
 
@@ -262,15 +425,26 @@ public class DAO {
 
 	public String checkTutorialCount(int tutId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		int lastTutorial = 0;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Tutorial.tutorialCount");
+			Query query = session.getNamedQuery("Tutorial.tutorialCount");
 
-		int lastTutorial = (Integer) query.getSingleResult();
+			lastTutorial = (Integer) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		System.out.println("tutoriql last count is " + lastTutorial
 				+ "and tutoril id is " + tutId);
 		if (lastTutorial == tutId) {
@@ -282,93 +456,163 @@ public class DAO {
 	}
 
 	public List<Problems> getAllProblems(String problemType) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Problems> problems = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Problems.allProblems");
-		query.setParameter("problemType", problemType);
+			Query query = session.getNamedQuery("Problems.allProblems");
+			query.setParameter("problemType", problemType);
 
-		List<Problems> problems = (List<Problems>) query.getResultList();
+			problems = (List<Problems>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return problems;
 
 	}
 
 	public List<Problems> getContestProblems(int contestId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Problems> problems = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Contest.getProblems");
-		query.setParameter("contestId", contestId);
+			Query query = session.getNamedQuery("Contest.getProblems");
+			query.setParameter("contestId", contestId);
 
-		List<Problems> problems = (List<Problems>) query.getResultList();
+			problems = (List<Problems>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return problems;
 
 	}
 
 	public List<Submission> checkUserSolution(int userId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Submission> submission = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Submission.getSubmission");
-		query.setParameter("userId", userId);
+			Query query = session.getNamedQuery("Submission.getSubmission");
+			query.setParameter("userId", userId);
 
-		List<Submission> submission = (List<Submission>) query.getResultList();
+			submission = (List<Submission>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return submission;
 
 	}
 
 	public Groups getUserGroup(int userId, int contestId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Groups group = null;
 		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
 			Query query = session
 					.getNamedQuery("Contestgroup.checkIndividual");
 			query.setParameter("userId", userId);
 			query.setParameter("contestId", contestId);
-			return (Groups) query.getSingleResult();
+
+			group = (Groups) query.getSingleResult();
+
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			return null;
+			e.printStackTrace();
 		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return group;
+
 	}
 
 	public List<Submission> checkGroupSolution(int groupId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Submission> submission = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Submission.getGroupSubmission");
-		query.setParameter("groupId", groupId);
+			Query query = session
+					.getNamedQuery("Submission.getGroupSubmission");
+			query.setParameter("groupId", groupId);
 
-		List<Submission> submission = (List<Submission>) query.getResultList();
+			submission = (List<Submission>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return submission;
 
 	}
 
 	public List<Contest> getAllContests() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Contest> contests = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Contest.allContest");
+			Query query = session.getNamedQuery("Contest.allContest");
 
-		List<Contest> contests = (List<Contest>) query.getResultList();
+			contests = (List<Contest>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return contests;
 
@@ -376,16 +620,27 @@ public class DAO {
 
 	public int getContestPoints(int contestId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		int contestPoints = 0;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Problems.contestPoints");
-		query.setParameter("contestID", contestId);
+			Query query = session.getNamedQuery("Problems.contestPoints");
+			query.setParameter("contestID", contestId);
 
-		int contestPoints = (int) (long) query.getSingleResult();
+			contestPoints = (int) (long) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return contestPoints;
 
 	}
@@ -393,136 +648,324 @@ public class DAO {
 	public boolean checkIfRegistered(int userId, int contestId,
 			String contestType) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Query query = null;
-		if (contestType.equals("Individual")) {
-			query = session.getNamedQuery("ContestUser.check");
-			query.setParameter("contestId", contestId);
-			query.setParameter("userId", userId);
+		Session session = null;
+		int size = 0;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			Query query = null;
+			if (contestType.equals("Individual")) {
+				query = session.getNamedQuery("ContestUser.check");
+				query.setParameter("contestId", contestId);
+				query.setParameter("userId", userId);
 
-		} else {
-			query = session.getNamedQuery("Contestgroup.checkIndividual");
-			query.setParameter("userId", userId);
-			query.setParameter("contestId", contestId);
+			} else {
+				query = session.getNamedQuery("Contestgroup.checkIndividual");
+				query.setParameter("userId", userId);
+				query.setParameter("contestId", contestId);
+			}
+			size = query.getResultList().size();
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		int size = query.getResultList().size();
 
-		session.getTransaction().commit();
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return size > 0;
 
 	}
 
 	public User getUser(int userId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		User user = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("User.getUser");
-		query.setParameter("userId", userId);
+			Query query = session.getNamedQuery("User.getUser");
+			query.setParameter("userId", userId);
 
-		User user = (User) query.getSingleResult();
+			user = (User) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return user;
 
 	}
 
 	public Contest getContest(int contestId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Contest contest = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Contest.getContest");
-		query.setParameter("contestId", contestId);
+			Query query = session.getNamedQuery("Contest.getContest");
+			query.setParameter("contestId", contestId);
 
-		Contest contest = (Contest) query.getSingleResult();
+			contest = (Contest) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return contest;
 
 	}
 
 	public void insertIndividualUser(int userId, int contestId) {
-		User user = getUser(userId);
-		Contest contest = getContest(contestId);
-		ContestUserId contestUserId = new ContestUserId(contestId, userId);
+		Session session = null;
+		try {
+			User user = getUser(userId);
+			Contest contest = getContest(contestId);
+			ContestUserId contestUserId = new ContestUserId(contestId, userId);
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		ContestUser contestUser = new ContestUser(contestUserId, contest,
-				user);
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			ContestUser contestUser = new ContestUser(contestUserId, contest,
+					user);
 
-		session.save(contestUser);
+			session.save(contestUser);
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+	}
+
+	public void insertSchool(School school) {
+
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
+			session.save(school);
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+	}
+
+	public Country getCountry(int countryId) {
+
+		Session session = null;
+		Country country = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
+			Query query = session.getNamedQuery("Country.getCountry");
+			query.setParameter("countryId", countryId);
+
+			country = (Country) query.getSingleResult();
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return country;
+
+	}
+
+	public School getSchool(int schoolId) {
+
+		Session session = null;
+		School school = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
+			Query query = session.getNamedQuery("School.getSchool");
+			query.setParameter("schoolId", schoolId);
+
+			school = (School) query.getSingleResult();
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return school;
+
+	}
+
+	public boolean updateUserProfile(String fname, String lname, String email,
+			int countryId, String schoolId, String upwd, String schoolCity,
+			String schoolName, int userId) {
+		Session session = null;
+		try {
+
+			// check if school not exist in dropdown
+			if (schoolId == null) {
+				Country country = getCountry(countryId);
+				School school = new School(country, schoolName, schoolCity);
+				insertSchool(school);
+
+			}
+
+			User user = getUser(userId);
+			user.setFirstName(fname);
+			user.setLastName(lname);
+			user.setEmail(email);
+			user.setSchool(getSchool(Integer.parseInt(schoolId)));
+			if (!upwd.equals("")) {
+				user.setPassword(upwd);
+			}
+
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+			session.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			try {
+
+				session.close();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			return false;
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+		return true;
 	}
 
 	public Problems getProblem(int problemId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Problems problem = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Problems.getProblem");
-		query.setParameter("problemId", problemId);
+			Query query = session.getNamedQuery("Problems.getProblem");
+			query.setParameter("problemId", problemId);
 
-		Problems problem = (Problems) query.getSingleResult();
+			problem = (Problems) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 		return problem;
 
 	}
 
 	public String addGroup(String groupName, String user1, String user2,
 			String contestId) {
+		Session session = null;
+		boolean status = false;
 		if (user1.equals(user2)) {
 			return "same users";
 		}
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
 
-		Query query1 = session.getNamedQuery("User.getUserByUserName");
-		query1.setParameter("userHandle", user1);
-		Query query2 = session.getNamedQuery("User.getUserByUserName");
-		query2.setParameter("userHandle", user2);
-
-		Set<User> users = new HashSet<User>();
-		users.add((User) query1.getSingleResult());
-		boolean statusUser = false;
-		User userObj2 = null;
 		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+
+			Query query1 = session.getNamedQuery("User.getUserByUserName");
+			query1.setParameter("userHandle", user1);
+			Query query2 = session.getNamedQuery("User.getUserByUserName");
+			query2.setParameter("userHandle", user2);
+
+			Set<User> users = new HashSet<User>();
+			users.add((User) query1.getSingleResult());
+			boolean statusUser = false;
+			User userObj2 = null;
+
 			userObj2 = (User) query2.getSingleResult();
 			users.add(userObj2);
 			statusUser = true;
-		} catch (Exception e) {
 
-		}
-		if (!statusUser) {
-			return "user does not exist";
-		}
+			if (!statusUser) {
+				if (session != null) {
+					session.close();
+				}
+				return "user does not exist";
+			}
 
-		// check if user is already registered for group competition
+			// check if user is already registered for group competition
 
-		Query checkUserRegistered = session
-				.getNamedQuery("Contestgroup.checkIndividual");
-		checkUserRegistered.setParameter("contestId",
-				Integer.parseInt(contestId));
-		checkUserRegistered.setParameter("userId", userObj2.getUserId());
+			Query checkUserRegistered = session
+					.getNamedQuery("Contestgroup.checkIndividual");
+			checkUserRegistered.setParameter("contestId",
+					Integer.parseInt(contestId));
+			checkUserRegistered.setParameter("userId", userObj2.getUserId());
 
-		int size = checkUserRegistered.getResultList().size();
-		if (size > 0) {
-			return "user participated";
-		}
+			int size = checkUserRegistered.getResultList().size();
+			if (size > 0) {
+				if (session != null) {
+					session.close();
+				}
+				return "user participated";
+			}
 
-		Groups newGroup = new Groups(groupName, null, null, users);
-		boolean status = false;
-		try {
+			Groups newGroup = new Groups(groupName, null, null, users);
+			status = false;
+
 			session.save(newGroup);
 			session.getTransaction().commit();
 			session.beginTransaction();
@@ -544,9 +987,14 @@ public class DAO {
 			status = true;
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		if (!status) {
 			return "exist";
@@ -556,16 +1004,27 @@ public class DAO {
 	}
 
 	public Testcases getTestcaseData(int testcaseId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Testcases testcase = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Testcases.getData");
-		query.setParameter("testcaseId", testcaseId);
+			Query query = session.getNamedQuery("Testcases.getData");
+			query.setParameter("testcaseId", testcaseId);
 
-		Testcases testcase = (Testcases) query.getSingleResult();
+			testcase = (Testcases) query.getSingleResult();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return testcase;
 
@@ -573,17 +1032,28 @@ public class DAO {
 
 	public List<Testcases> getTestcaseInputData(String testcaseType,
 			int problemId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		List<Testcases> testcases = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Testcases.getInputData");
-		query.setParameter("testcaseType", testcaseType);
-		query.setParameter("problemId", problemId);
+			Query query = session.getNamedQuery("Testcases.getInputData");
+			query.setParameter("testcaseType", testcaseType);
+			query.setParameter("problemId", problemId);
 
-		List<Testcases> testcases = (List<Testcases>) query.getResultList();
+			testcases = (List<Testcases>) query.getResultList();
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return testcases;
 
@@ -591,21 +1061,32 @@ public class DAO {
 
 	public Groups getGroupDetails(int id, int contestId, String idType) {
 		Query query = null;
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Groups groups = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		if (idType.equals("groupId")) {
-			query = session.getNamedQuery("Groups.getGroupUsers");
-			query.setParameter("groupId", id);
-		} else {
-			query = session.getNamedQuery("Groups.getUsersGroup");
-			query.setParameter("userId", id);
-			query.setParameter("contestId", contestId);
+			if (idType.equals("groupId")) {
+				query = session.getNamedQuery("Groups.getGroupUsers");
+				query.setParameter("groupId", id);
+			} else {
+				query = session.getNamedQuery("Groups.getUsersGroup");
+				query.setParameter("userId", id);
+				query.setParameter("contestId", contestId);
+			}
+
+			groups = (Groups) query.getSingleResult();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		Groups groups = (Groups) query.getSingleResult();
-		session.getTransaction().commit();
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return groups;
 
@@ -615,11 +1096,21 @@ public class DAO {
 		User user = getUser(userId);
 		int userPoints = user.getPoints() + successPoints;
 		user.setPoints(userPoints);
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(user);
-		session.getTransaction().commit();
-		session.close();
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 	}
 
@@ -635,11 +1126,21 @@ public class DAO {
 			award.setTitleId(1);
 		}
 		user.setAwards(award);
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(user);
-		session.getTransaction().commit();
-		session.close();
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		// return user;
 
@@ -648,54 +1149,67 @@ public class DAO {
 	public void insertSolutionSubmit(String problemId, Boolean accepted,
 			String message, int userId) {
 
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
 
-		// start here
-		Problems problem = getProblem(Integer.parseInt(problemId));
-		int problemPoints = problem.getProblemPoints();
+			// start here
+			Problems problem = getProblem(Integer.parseInt(problemId));
+			int problemPoints = problem.getProblemPoints();
 
-		System.out.println(accepted);
-		User userData = getUser(userId);
-		session.beginTransaction();
-		Submission submission = null;
-		Query query = session
-				.getNamedQuery("Submission.getUserProblemSubmission");
-		query.setParameter("userId", userId);
-		query.setParameter("problemId", Integer.parseInt(problemId));
-		boolean submissionExists = query.getResultList().size() > 0;
-		Submission oldsubmission = null;
-		if (submissionExists) {
-			oldsubmission = (Submission) query.getSingleResult();
-		}
-		if (accepted) {
-			if (!submissionExists)
-				submission = new Submission(problem, userData, true, message,
-						problemPoints);
-			else {
-				submission = oldsubmission;
-				submission.setAccepted(true);
-				submission.setMessage(message);
-				submission.setPoints(problemPoints);
+			System.out.println(accepted);
+			User userData = getUser(userId);
+			session.beginTransaction();
+			Submission submission = null;
+			Query query = session
+					.getNamedQuery("Submission.getUserProblemSubmission");
+			query.setParameter("userId", userId);
+			query.setParameter("problemId", Integer.parseInt(problemId));
+			boolean submissionExists = query.getResultList().size() > 0;
+			Submission oldsubmission = null;
+			if (submissionExists) {
+				oldsubmission = (Submission) query.getSingleResult();
 			}
-			if (!submissionExists || !oldsubmission.isAccepted())
-				increasePoints(userId, problemPoints);
-		} else {
-
-			// Solution is not accepted. Now check if user has already
-			// successfully solved this problem before.
-
-			if (!submissionExists) {
-				submission = new Submission(problem, userData, false, message,
-						0);
+			if (accepted) {
+				if (!submissionExists)
+					submission = new Submission(problem, userData, true,
+							message, problemPoints);
+				else {
+					submission = oldsubmission;
+					submission.setAccepted(true);
+					submission.setMessage(message);
+					submission.setPoints(problemPoints);
+				}
+				if (!submissionExists || !oldsubmission.isAccepted())
+					increasePoints(userId, problemPoints);
 			} else {
-				return;
+
+				// Solution is not accepted. Now check if user has already
+				// successfully solved this problem before.
+
+				if (!submissionExists) {
+					submission = new Submission(problem, userData, false,
+							message, 0);
+				} else {
+					if (session != null) {
+						session.close();
+					}
+					return;
+				}
+
 			}
 
+			session.saveOrUpdate(submission);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		session.saveOrUpdate(submission);
-		session.getTransaction().commit();
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		// end here
 
@@ -704,54 +1218,64 @@ public class DAO {
 	public void insertCompetitionSolution(int contestId, String problemId,
 			Boolean accepted, String message, int userId) {
 
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
 
-		// start here
-		Problems problem = getProblem(Integer.parseInt(problemId));
-		int problemPoints = problem.getProblemPoints();
-		User userData = getUser(userId);
-		Contest contest = getContest(contestId);
-		session.beginTransaction();
-		Submission submission = null;
-		Query query = session
-				.getNamedQuery("Submission.getCompetitionSubmission");
-		query.setParameter("userId", userId);
-		query.setParameter("problemId", Integer.parseInt(problemId));
-		query.setParameter("contestId", contestId);
-		if (accepted) {
+			// start here
+			Problems problem = getProblem(Integer.parseInt(problemId));
+			int problemPoints = problem.getProblemPoints();
+			User userData = getUser(userId);
+			Contest contest = getContest(contestId);
+			session.beginTransaction();
+			Submission submission = null;
+			Query query = session
+					.getNamedQuery("Submission.getCompetitionSubmission");
+			query.setParameter("userId", userId);
+			query.setParameter("problemId", Integer.parseInt(problemId));
+			query.setParameter("contestId", contestId);
+			if (accepted) {
 
-			submission = new Submission(contest, null, problem, userData,
-					accepted, message, problemPoints);
-			if (query.getResultList().size() > 0) {
-				Submission oldSubmission = (Submission) query
-						.getSingleResult();
-				submission = oldSubmission;
-				submission.setAccepted(true);
-				submission.setMessage(message);
-				submission.setPoints(problemPoints);
-				session.update(submission);
-				if (!oldSubmission.isAccepted())
-					increasePoints(userId, problemPoints);
-			} else {
-				session.save(submission);
-				increasePoints(userId, problemPoints);
-			}
-
-		} else {
-
-			// Solution is not accepted. Now check if user has already
-			// successfully solved this problem before.
-
-			if (query.getResultList().size() <= 0) {
 				submission = new Submission(contest, null, problem, userData,
-						accepted, message, 0);
-				session.save(submission);
+						accepted, message, problemPoints);
+				if (query.getResultList().size() > 0) {
+					Submission oldSubmission = (Submission) query
+							.getSingleResult();
+					submission = oldSubmission;
+					submission.setAccepted(true);
+					submission.setMessage(message);
+					submission.setPoints(problemPoints);
+					session.update(submission);
+					if (!oldSubmission.isAccepted())
+						increasePoints(userId, problemPoints);
+				} else {
+					session.save(submission);
+					increasePoints(userId, problemPoints);
+				}
+
+			} else {
+
+				// Solution is not accepted. Now check if user has already
+				// successfully solved this problem before.
+
+				if (query.getResultList().size() <= 0) {
+					submission = new Submission(contest, null, problem,
+							userData, accepted, message, 0);
+					session.save(submission);
+				}
+
 			}
 
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		session.getTransaction().commit();
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		// end here
 
@@ -760,65 +1284,75 @@ public class DAO {
 	public void insertGroupCompetitionSolution(int contestId, String problemId,
 			Boolean accepted, String message, int groupId) {
 
-		Session session = sessionFactory.openSession();
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
 
-		// start here
+			// start here
 
-		// get each user from group
-		Groups groups = getGroupDetails(groupId, contestId, "groupId");
+			// get each user from group
+			Groups groups = getGroupDetails(groupId, contestId, "groupId");
 
-		Problems problem = getProblem(Integer.parseInt(problemId));
-		int problemPoints = problem.getProblemPoints();
-		Contest contest = getContest(contestId);
+			Problems problem = getProblem(Integer.parseInt(problemId));
+			int problemPoints = problem.getProblemPoints();
+			Contest contest = getContest(contestId);
 
-		session.beginTransaction();
-		Submission submission = null;
-		Query query = session
-				.getNamedQuery("Submission.getGroupContestProblemSubmission");
+			session.beginTransaction();
+			Submission submission = null;
+			Query query = session.getNamedQuery(
+					"Submission.getGroupContestProblemSubmission");
 
-		query.setParameter("problemId", Integer.parseInt(problemId));
-		query.setParameter("contestId", contestId);
-		query.setParameter("groupId", groupId);
+			query.setParameter("problemId", Integer.parseInt(problemId));
+			query.setParameter("contestId", contestId);
+			query.setParameter("groupId", groupId);
 
-		if (accepted) {
-			submission = new Submission(contest, groups, problem, null,
-					accepted, message, problemPoints);
-			if (query.getResultList().size() > 0) {
-				Submission oldSubmission = (Submission) query
-						.getSingleResult();
-				submission = oldSubmission;
-				submission.setAccepted(true);
-				submission.setMessage(message);
-				submission.setPoints(problemPoints);
-				session.update(submission);
-				if (!oldSubmission.isAccepted()) {
+			if (accepted) {
+				submission = new Submission(contest, groups, problem, null,
+						accepted, message, problemPoints);
+				if (query.getResultList().size() > 0) {
+					Submission oldSubmission = (Submission) query
+							.getSingleResult();
+					submission = oldSubmission;
+					submission.setAccepted(true);
+					submission.setMessage(message);
+					submission.setPoints(problemPoints);
+					session.update(submission);
+					if (!oldSubmission.isAccepted()) {
+						for (User u : groups.getUsers()) {
+							increasePoints(u.getUserId(), problemPoints);
+						}
+					}
+				} else {
+					session.save(submission);
 					for (User u : groups.getUsers()) {
 						increasePoints(u.getUserId(), problemPoints);
 					}
 				}
+
 			} else {
-				session.save(submission);
-				for (User u : groups.getUsers()) {
-					increasePoints(u.getUserId(), problemPoints);
+
+				// Solution is not accepted. Now check if user has already
+				// successfully solved this problem before.
+
+				if (query.getResultList().size() <= 0) {
+					submission = new Submission(contest, groups, problem, null,
+							accepted, message, 0);
+					session.save(submission);
 				}
+
 			}
 
-		} else {
+			session.getTransaction().commit();
 
-			// Solution is not accepted. Now check if user has already
-			// successfully solved this problem before.
-
-			if (query.getResultList().size() <= 0) {
-				submission = new Submission(contest, groups, problem, null,
-						accepted, message, 0);
-				session.save(submission);
-			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		session.getTransaction().commit();
-
-		session.close();
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		// end here
 
@@ -827,13 +1361,23 @@ public class DAO {
 	public void insertQuestion(int userId, String userQuestion) {
 		User user = getUser(userId);
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Forumquestion question = new Forumquestion(user, userQuestion);
-		session.save(question);
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			Forumquestion question = new Forumquestion(user, userQuestion);
+			session.save(question);
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 	}
 
@@ -843,28 +1387,49 @@ public class DAO {
 				userId);
 		Forumquestion question = getQuestion(questionId);
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Forumanswer answer = new Forumanswer(answerId, question, user);
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			Forumanswer answer = new Forumanswer(answerId, question, user);
 
-		session.save(answer);
+			session.save(answer);
 
-		session.getTransaction().commit();
-		session.close();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 	}
 
 	public Forumquestion getQuestion(int questionId) {
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = null;
+		Forumquestion question = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
 
-		Query query = session.getNamedQuery("Forumquestion.getQuestion");
-		query.setParameter("questionId", questionId);
+			Query query = session.getNamedQuery("Forumquestion.getQuestion");
+			query.setParameter("questionId", questionId);
 
-		Forumquestion question = (Forumquestion) query.getSingleResult();
-		session.getTransaction().commit();
-		session.close();
+			question = (Forumquestion) query.getSingleResult();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 		return question;
 

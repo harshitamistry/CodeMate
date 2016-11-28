@@ -5,7 +5,7 @@
 <%@include file="dbConnect.jsp"%>
 <%@include file="header.jsp"%>
 <script src="_js/SignUp.js" type="text/javascript"></script>
-<div class="container">
+<div class="container homeContainer">
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
 			<a class="customLink" href="/CodeMateMVC/Learn">
@@ -57,6 +57,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
+		<a class="customLink" href="/CodeMateMVC/Profile">
 			<div class="thumbnail">
 				<img class="thumbnail_image" src="_images/user.png" alt="user">
 				<div class="caption">
@@ -65,6 +66,7 @@
 					<p>Go to user profile.</p>
 				</div>
 			</div>
+			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
 			<a class="customLink" href="Forum">
@@ -91,6 +93,7 @@
 			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
+		<a class="customLink" href="Howto.jsp">
 			<div class="thumbnail">
 				<img class="thumbnail_image" src="_images/guide.png"
 					alt="leader board">
@@ -99,6 +102,7 @@
 					<p>How to instructions.</p>
 				</div>
 			</div>
+			</a>
 		</div>
 	</div>
 </div>

@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @Table(name = "Country", catalog = "hibernateCodeMate")
 @NamedQueries({
 		@NamedQuery(name = "Country.allCountry", query = "from Country"),
+		@NamedQuery(name = "Country.getCountry", query = "from Country where countryId=:countryId"),
 		@NamedQuery(name = "Country.getFlagOfUser", query = "select c.countryFlag from Country c join c.schools s join s.users u where userId=:userId") })
 public class Country implements java.io.Serializable {
 

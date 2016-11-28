@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -60,6 +61,16 @@ public class UserServlet extends HttpServlet {
 			String userEmailValue = request.getParameter("userEmail");
 			String exist = checkDataExist(userEmailValue, "email");
 			response.getWriter().write(exist);
+		} else if (request.getParameter("query").equals("editUserEmail")) {
+			String userEmailValue = request.getParameter("userEmail");
+			String userHandleValue = request.getParameter("userHandle");
+			DAO userDao = new DAO();
+			if (userDao.checkEmailValid(userEmailValue, userHandleValue)) {
+				response.getWriter().write("valid");
+			} else {
+				response.getWriter().write("invalid");
+			}
+
 		} else if (request.getParameter("query").equals("CreateUserQuery")) {
 			String fname = request.getParameter("first_name");
 			String lname = request.getParameter("last_name");
@@ -84,6 +95,22 @@ public class UserServlet extends HttpServlet {
 			} else {
 				System.out.println("Some problem in create user");
 			}
+		} else if (request.getParameter("query").equals("UpdateUserQuery")) {
+			String fname = request.getParameter("first_name");
+			String lname = request.getParameter("last_name");
+			String countryID = request.getParameter("countryID");
+			String email = request.getParameter("email");
+			String schoolID = request.getParameter("schoolID");
+			String upwd = request.getParameter("userPassword");
+			String schoolCity = request.getParameter("schoolCity");
+			String schoolName = request.getParameter("schoolName");
+			DAO updateUserDao = new DAO();
+
+			updateUserDao.updateUserProfile(fname, lname, email,
+					Integer.parseInt(countryID), schoolID, upwd, schoolCity,
+					schoolName,
+					(int) request.getSession().getAttribute("userId"));
+
 		} else if (request.getParameter("query").equals("logout")) {
 			request.getSession().invalidate();
 		}
@@ -126,6 +153,7 @@ public class UserServlet extends HttpServlet {
 			}
 
 		}
+
 	}
 
 	/**
@@ -135,11 +163,10 @@ public class UserServlet extends HttpServlet {
 	 *            http servlet request
 	 */
 	protected void setTutorialComplete(HttpServletRequest request) {
-
+		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			HttpSession session = request.getSession();
 			String sql = "";
@@ -152,7 +179,12 @@ public class UserServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -168,10 +200,10 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected boolean updateTutorialProgress(int currentTutorial,
 			HttpServletRequest request) {
+		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			HttpSession session = request.getSession();
 			String sql = "SELECT TutorialProgressID FROM user WHERE UserHandle='"
@@ -201,6 +233,12 @@ public class UserServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 
@@ -232,11 +270,11 @@ public class UserServlet extends HttpServlet {
 	protected boolean createUser(String fname, String lname, String email,
 			String countryID, String schoolID, String uname, String upwd,
 			String schoolCity, String schoolName) {
+		Connection conn = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			String sql = "";
 
@@ -269,6 +307,12 @@ public class UserServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 
@@ -285,10 +329,10 @@ public class UserServlet extends HttpServlet {
 	 * @return if the details exist or not
 	 */
 	protected String checkDataExist(String data, String dataType) {
+		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			String sql = "";
 
@@ -310,6 +354,12 @@ public class UserServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return "";
 		}
 	}
@@ -325,11 +375,11 @@ public class UserServlet extends HttpServlet {
 	 * @return login operation status
 	 */
 	protected int loginUser(String uname, String upwd) {
+		Connection conn = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			String sql = "";
 
@@ -351,6 +401,12 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return -1;
 		}
 

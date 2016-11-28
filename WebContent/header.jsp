@@ -89,7 +89,7 @@ if((session.getAttribute("userHandle") == null || session.getAttribute("userHand
 <div class="container-fluid">
 <div class="row">
 <div class = "col-xs-4 col-md-2">
-<a href="/CodeMateMVC/index.jsp">
+<a href="/CodeMateMVC/Home.jsp">
 <img src = "_images/logo.png"  height="50" width="227" class="headerImage"></a>
 </div>
 <c:choose>
@@ -111,10 +111,7 @@ if((session.getAttribute("userHandle") == null || session.getAttribute("userHand
   <button class="btn imgSize" id="googleBtn"></button>
 <button class="btn imgSize" id="facebookBtn"></button>
 </div> -->
-<div class="col-md-1 login">
 
-<button class="btn loginButton">New User</button>
-</div>
 
 
 
@@ -130,7 +127,7 @@ if((session.getAttribute("userHandle") == null || session.getAttribute("userHand
 		<li><a href="/CodeMateMVC/Learn">Learn</a></li>
 		<li><a href="/CodeMateMVC/Practice">Practice</a></li>
 		<li><a href="/CodeMateMVC/Competitions">Compete</a></li>
-		<li><a href="#">Leader Board</a></li>
+		<li><a href="/CodeMateMVC/LeaderBoard">Leader Board</a></li>
 		<li><a href="/CodeMateMVC/Forum">Forum</a></li>
 		<li><a href="/CodeMateMVC/Calendar">Calendar</a></li>
 	</ul>
@@ -142,8 +139,8 @@ if((session.getAttribute("userHandle") == null || session.getAttribute("userHand
 		<span class="titleDD" id="userNameDD"><%= session.getAttribute( "userHandle" ) %></span>
 	</a>
   	<ul class="dropdown-menu" aria-labelledby="dropdownMenuUser" class="DDul">
-		<li><a href="#">Profile</a></li>
-		<li><a href="#">Help</a></li>
+		<li><a href="/CodeMateMVC/Profile">Profile</a></li>
+		<li><a href="Howto.jsp">Help</a></li>
 		<li><a href="#" id="logout">Logout</a></li>
 		
 		

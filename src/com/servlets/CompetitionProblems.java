@@ -41,6 +41,14 @@ public class CompetitionProblems extends HttpServlet {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
 			DAO competitionProblemsDao = new DAO();
+			Contest c = competitionProblemsDao.getContest(
+					Integer.parseInt(request.getParameter("contestId")));
+			if (!competitionProblemsDao.checkIfRegistered(
+					(int) request.getSession().getAttribute("userId"),
+					c.getContestId(), c.getContestType())) {
+				response.sendRedirect("/CodeMateMVC/Competitions");
+				return;
+			}
 			List<Problems> contestProblems = new ArrayList<Problems>();
 			Contest contest = competitionProblemsDao.getContest(
 					Integer.parseInt(request.getParameter("contestId")));

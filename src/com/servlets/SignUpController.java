@@ -36,6 +36,7 @@ public class SignUpController extends HttpServlet {
 		DAO dao_signup = new DAO();
 
 		request.setAttribute("countryList", dao_signup.getCountryList());
+		System.out.println("contry set");
 		request.setAttribute("schoolList", dao_signup.getSchoolList());
 		request.getRequestDispatcher("/SignUp.jsp").forward(request, response);
 	}

@@ -20,6 +20,7 @@
    </tr>
    <tr>
    <td>
+   <input type="hidden" id="userHandle" value="${userProfile.userHandle}">
    <input type="text" id='fname' class="form-control" placeholder="FIRST NAME" value="${userProfile.firstName}">
    </td>
    <td>

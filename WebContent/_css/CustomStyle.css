@@ -12,6 +12,11 @@ body {
 	padding-bottom:10px;
 }
 
+.homeContainer{
+	height:calc(100% - 91px);
+	overflow-y:auto;
+}
+
 #errorMessages > li{
 	color:#a94442;
 }
@@ -19,7 +24,9 @@ body {
 .header{
 	background-color:#2A3F54;
 }
-
+.howToText{
+	font-size:2em;
+}
 #footerContent{
 	text-align:center;
 	color:#dddddd;
@@ -480,7 +487,7 @@ a.list-group-item .list-group-item-heading,a.list-group-item .list-group-item-te
 
 /* calendar page*/
 #calendarContainer{
-	height:calc(100% - 70px);
+	height:calc(100% - 100px);
 	overflow-y:auto;
 	margin-bottom:10px;
 }
@@ -488,3 +495,8 @@ a.list-group-item .list-group-item-heading,a.list-group-item .list-group-item-te
 
 /* LeaderBoard */
 /* end Leaderboard*/
+
+.HowToMain{
+	height:calc(100% - 91px);
+	overflow-y:auto;
+}

@@ -52,7 +52,7 @@ public class Contestgroup implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ContestID", nullable = false, insertable = false, updatable = false)
 	public Contest getContest() {
 		return this.contest;

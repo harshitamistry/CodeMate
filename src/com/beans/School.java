@@ -24,7 +24,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "school", catalog = "hibernateCodeMate")
 @NamedQueries({
-		@NamedQuery(name = "School.countrySchool", query = "select s from School s JOIN s.country c where c.countryName = 'Canada'") })
+		@NamedQuery(name = "School.countrySchool", query = "select s from School s JOIN s.country c where c.countryName = 'Canada'"),
+		@NamedQuery(name = "School.getSchool", query = "from School where schoolId = :schoolId") })
 public class School implements java.io.Serializable {
 
 	private Integer schoolId;

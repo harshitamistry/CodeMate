@@ -33,7 +33,7 @@
    <label> Name: </label></td> <td><c:out value="${userProfile.firstName}"/>&nbsp;<c:out value="${userProfile.lastName}"/>
    </td>
    </tr>
-   <tr><td> <label> School: </label></td> <td><c:out value="${userProfile.email}"/></td></tr>
+   <tr><td> <label> Email: </label></td> <td><c:out value="${userProfile.email}"/></td></tr>
     <tr><td> <label> School: </label></td> <td><c:out value="${userProfile.school.schoolName}"/></td></tr>
    <tr><td> <label> Country: </label></td> <td><c:out value="${userProfile.school.country.countryName}"/></td></tr>
    <tr><td> <label> City: </label></td> <td><c:out value="${userProfile.school.schoolCity}"/></td></tr>

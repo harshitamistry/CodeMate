@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,10 +167,11 @@ public class CompilerServlet extends HttpServlet {
 	 */
 	protected void increasePoints(HttpServletRequest request,
 			String tutorialId) {
+		Connection conn = null;
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			HttpSession session = request.getSession();
 			String sql = "";
@@ -207,7 +209,12 @@ public class CompilerServlet extends HttpServlet {
 
 		Exception e) {
 			e.printStackTrace();
-
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -224,10 +231,11 @@ public class CompilerServlet extends HttpServlet {
 	 * @return true if the output matches, false otherwise
 	 */
 	protected boolean checkProgramOutput(String output, String tutorialId) {
+		Connection conn = null;
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, "root",
-					"1234");
+			conn = DriverManager.getConnection(DB_URL, "root", "1234");
 			Statement stmt = conn.createStatement();
 			String sql = "";
 
@@ -255,6 +263,12 @@ public class CompilerServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 	}

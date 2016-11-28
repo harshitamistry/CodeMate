@@ -30,6 +30,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 		@NamedQuery(name = "User.allDetails", query = "select u from User u JOIN u.tutorial t where u.userId = :uId"),
 		@NamedQuery(name = "User.getUser", query = "from User where userId = :userId"),
+		@NamedQuery(name = "User.checkEmailExist", query = "from User where email = :userEmail and userHandle != :currUserHandle"),
 		@NamedQuery(name = "User.getUserByUserName", query = "from User where userHandle = :userHandle"),
 		@NamedQuery(name = "User.topTen", query = "select u from User u order by u.points DESC"),
 		@NamedQuery(name = "User.topTenCountry", query = "select u from User u join u.school s join s.country c where c.countryId=:countryId order by u.points DESC"),

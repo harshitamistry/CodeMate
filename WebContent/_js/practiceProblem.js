@@ -141,6 +141,8 @@ $(function(){
 		   var errstr=err.toString();
 		   if(extra_inputs==1)
 			   errstr="testcase failed<br/>";
+		   else
+			   errstr=errstr+"<br/>";
 		   errstr=errstr.fontcolor("red");
 		   $("#output").append(errstr);
 		   if(testcase_run==num_testcases && button_clicked_type=="submit"){

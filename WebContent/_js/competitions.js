@@ -49,7 +49,7 @@ $(function(){
 					}
 		
 					else if(data.trim()=="user participated"){
-						err_flag = err_flag+$('#groupName').validation_check(/^$/,"This user is already registered with "+
+						err_flag = err_flag+$('#user2').validation_check(/^$/,"This user is already registered with "+
 						"another group.");
 					}
 					else if(data.trim()=="user does not exist"){
