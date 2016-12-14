@@ -37,9 +37,14 @@ public class CompetitionProblems extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check if user is signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// get all the problems related to that competitions and their
+			// details
 			DAO competitionProblemsDao = new DAO();
 			Contest c = competitionProblemsDao.getContest(
 					Integer.parseInt(request.getParameter("contestId")));

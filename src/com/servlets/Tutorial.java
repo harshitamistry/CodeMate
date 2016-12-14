@@ -34,19 +34,23 @@ public class Tutorial extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// check to see if the user is already signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
 			DAO tutorial_dao = new DAO();
 			List<User> userList = tutorial_dao.getUserDetails(
 					(int) request.getSession().getAttribute("userId"));
 			int progressId = userList.get(0).getTutorial().getTutorialId();
 
+			// when user tries to access the locked tutorial go to learn page
 			if (progressId < Integer.parseInt(request.getParameter("id"))) {
 				response.sendRedirect("/CodeMateMVC/Learn");
 			}
 
+			// set the tutorial content for tutorial page
 			request.setAttribute("tutorial", tutorial_dao.getTutorialDetails(
 					Integer.parseInt(request.getParameter("id"))));
 

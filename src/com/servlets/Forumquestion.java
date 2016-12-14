@@ -33,6 +33,7 @@ public class Forumquestion extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// get particular question details
 		DAO forumQuestionDao = new DAO();
 		int id = Integer.parseInt(request.getParameter("id"));
 		request.setAttribute("questionHeading",
@@ -50,6 +51,7 @@ public class Forumquestion extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// when a user posts an answer
 		DAO questionDao = new DAO();
 		if (request.getParameter("query").equals("addAnswer")) {
 			questionDao.insertAnswer(

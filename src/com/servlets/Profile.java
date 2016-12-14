@@ -33,9 +33,13 @@ public class Profile extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check to see if the user is already signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// give award to user according to points and send to users profile
 			DAO profileDao = new DAO();
 
 			profileDao.giveAward(

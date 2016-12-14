@@ -34,9 +34,13 @@ public class ContestProblem extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check if user is already registered or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// take user to particular problem
 			DAO userDAO = new DAO();
 			request.setAttribute("contestProblem", userDAO
 					.getProblem(Integer.parseInt(request.getParameter("id"))));
@@ -53,6 +57,7 @@ public class ContestProblem extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// if the solution is accepted
 		DAO userDAO = new DAO();
 		if (request.getParameter("query").equals("solutionAccept")) {
 			String problemId = request.getParameter("problemId");

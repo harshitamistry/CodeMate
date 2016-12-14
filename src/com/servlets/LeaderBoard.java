@@ -34,10 +34,13 @@ public class LeaderBoard extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// check to see if user is already signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// get flags for all the countries
 			DAO LBDao = new DAO();
 
 			if (request.getParameterMap().containsKey("query")
@@ -46,6 +49,8 @@ public class LeaderBoard extends HttpServlet {
 						Integer.parseInt(request.getParameter("userId")));
 				response.getOutputStream().write(flag);
 			} else {
+
+				// get top ten users
 				List<User> users = LBDao.getTopTen();
 				request.setAttribute("topTen", users);
 				request.setAttribute("countryList", LBDao.getCountryList());

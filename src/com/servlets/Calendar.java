@@ -34,10 +34,13 @@ public class Calendar extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// check if user is signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// get all the competitions and show them in calendar
 			DAO daoCompetitions = new DAO();
 			List<Contest> contestList = daoCompetitions.getAllContests();
 			String json = "[";

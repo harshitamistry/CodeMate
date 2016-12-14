@@ -25,6 +25,7 @@ public class Practice extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	// tutorial complexities
 	public enum tutorialComplexity {
 		easy, medium, hard
 	}
@@ -36,9 +37,13 @@ public class Practice extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check to see if user is already registered or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// set all the attributes for the practice problems page
 			request.setAttribute("tutorialComplexity",
 					tutorialComplexity.values());
 			DAO practiceDao = new DAO();

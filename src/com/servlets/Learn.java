@@ -32,9 +32,13 @@ public class Learn extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check to see if user is already signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// set list of tutorials
 			DAO dao_tutorial = new DAO();
 
 			request.setAttribute("tutorialList",

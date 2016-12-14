@@ -35,7 +35,8 @@ public class Forum extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// get list of questions and send to forum page
 		DAO forumDao = new DAO();
 
 		request.setAttribute("questionList", forumDao.getQuestionList());
@@ -52,12 +53,16 @@ public class Forum extends HttpServlet {
 			throws ServletException, IOException {
 
 		DAO questionDao = new DAO();
+
+		// when user asks a new question
 		if (request.getParameter("query").equals("newQuestion")) {
 			questionDao.insertQuestion(
 					(int) request.getSession().getAttribute("userId"),
 					request.getParameter("question"));
 			response.sendRedirect("/CodeMateMVC/Forum");
 		} else if (request.getParameter("query").equals("searchQuestion")) {
+
+			// when user looks up for the question
 			List<Forumquestion> questions = questionDao
 					.searchQuestionList(request.getParameter("term"));
 			List<String> questionStrings = new ArrayList<String>();

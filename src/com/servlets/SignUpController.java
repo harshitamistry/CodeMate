@@ -32,11 +32,12 @@ public class SignUpController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		// set country and school drop downs from the database
 		DAO dao_signup = new DAO();
 
 		request.setAttribute("countryList", dao_signup.getCountryList());
-		System.out.println("contry set");
+		// System.out.println("contry set");
 		request.setAttribute("schoolList", dao_signup.getSchoolList());
 		request.getRequestDispatcher("/SignUp.jsp").forward(request, response);
 	}

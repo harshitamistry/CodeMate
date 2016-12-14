@@ -35,9 +35,14 @@ public class Competitions extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check if user is signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// get list of competitions. This block also checks whether user has
+			// already been registered and take appropriate actions
 			DAO daoCompetitions = new DAO();
 
 			if (request.getParameterMap().containsKey("query")
@@ -78,11 +83,12 @@ public class Competitions extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("in post");
+		// System.out.println("in post");
 
+		// when user tries to add another user in a group
 		DAO competitionsDao = new DAO();
 		if (request.getParameter("query").equals("addGroup")) {
-			System.out.println("in check group");
+			// System.out.println("in check group");
 
 			String groupName = request.getParameter("groupName");
 			String user = (String) request.getSession()
@@ -91,7 +97,7 @@ public class Competitions extends HttpServlet {
 			String contestId = request.getParameter("contestId");
 			String status = competitionsDao.addGroup(groupName, user,
 					otherUser, contestId);
-			System.out.println("in check group and group is " + status);
+			// System.out.println("in check group and group is " + status);
 			response.getWriter().write(status);
 		}
 

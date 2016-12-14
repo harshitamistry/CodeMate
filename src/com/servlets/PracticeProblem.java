@@ -32,9 +32,13 @@ public class PracticeProblem extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check to see if user is already signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+
+			// set attribute for the practice problems
 			DAO practiceDAO = new DAO();
 			request.setAttribute("practiceProblem", practiceDAO
 					.getProblem(Integer.parseInt(request.getParameter("id"))));

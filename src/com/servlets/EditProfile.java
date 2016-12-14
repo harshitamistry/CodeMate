@@ -33,9 +33,12 @@ public class EditProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// check to see if user is signed in or not
 		if (request.getSession().getAttribute("userId") == null) {
 			response.sendRedirect("/CodeMateMVC/SignUp");
 		} else {
+			// set all the attributes in the edit profile page
 			DAO editProfileDao = new DAO();
 
 			User user = editProfileDao.getUser(
