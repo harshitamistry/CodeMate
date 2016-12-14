@@ -3,6 +3,8 @@
 
 <%@include file="header.jsp"%>
 <%@include file="dbConnectJava.jsp"%>
+
+<!-- script -->
 <script type="text/javascript" src="_js/practice.js"></script>
 
 <div class="container-fluid">

@@ -2,9 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@include file="header.jsp"%>
 <div class="container" id="calendarContainer">
-    <div id="calendar"></div>
+	<div id="calendar"></div>
 </div>
 <script>
+// calendar javascript
 $('#calendar').fullCalendar({
 	height:"parent",
 	eventSources:[{events:${eventsJson},

@@ -45,8 +45,7 @@ public class Competitions extends HttpServlet {
 				daoCompetitions.insertIndividualUser(
 						(int) request.getSession().getAttribute("userId"),
 						Integer.parseInt(request.getParameter("contestId")));
-				request.getRequestDispatcher("/competitions.jsp")
-						.forward(request, response);
+				response.sendRedirect("/CodeMateMVC/Competitions");
 				return;
 			} else if (request.getParameterMap().containsKey("query")
 					&& request.getParameter("query").equals("registerGroup")) {

@@ -2,10 +2,14 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@include file="header.jsp"%>
+
+<!-- scripts -->
 <script type="text/javascript" src="_js/competitions.js"></script>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+			<!-- To show list of competitions and their details in a table format -->
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -27,15 +31,19 @@
 								<c:when test="${contest.contestEndDate gt now }">
 									<c:choose>
 										<c:when test="${contestRegistrations.get(loop.index)}">
-										<c:choose><c:when test="${contest.contestStartDate lt now}">
-										<a href="/CodeMateMVC/CompetitionProblems?contestId=${contest.contestId }">Enter</a></c:when>
-										<c:otherwise>Registered</c:otherwise>
-										</c:choose></c:when>
+											<c:choose>
+												<c:when test="${contest.contestStartDate lt now}">
+													<a
+														href="/CodeMateMVC/CompetitionProblems?contestId=${contest.contestId }">Enter</a>
+												</c:when>
+												<c:otherwise>Registered</c:otherwise>
+											</c:choose>
+										</c:when>
 										<c:otherwise>
 											<c:choose>
 												<c:when test="${contest.contestType == 'Group'}">
-													<a
-														href="javascript:$('.bs-finish-modal-sm').modal();" id="contestButton" data-id="${contest.contestId}">Register</a>
+													<a href="javascript:$('.bs-finish-modal-sm').modal();"
+														id="contestButton" data-id="${contest.contestId}">Register</a>
 												</c:when>
 												<c:otherwise>
 													<a
@@ -74,17 +82,17 @@
 				<h4 class="modal-title run_message" id="myModalLabel">Add Group</h4>
 			</div>
 			<div class="modal-body ">
-				
-					<div class="form-group">
+
+				<div class="form-group">
 					<ul id="errorMessages">
-  					 </ul>
-						<input type="text" class="form-control" id="groupName"
-							placeholder="Enter Group Name">
-						<input type="text" class="form-control" id="user2"
-							placeholder="Other username(optional)">
-					</div>
-					<button  id="groupRegister" class="btn btn-default">Register</button>
-				
+					</ul>
+					<input type="text" class="form-control" id="groupName"
+						placeholder="Enter Group Name"> <input type="text"
+						class="form-control" id="user2"
+						placeholder="Other username(optional)">
+				</div>
+				<button id="groupRegister" class="btn btn-default">Register</button>
+
 			</div>
 		</div>
 	</div>

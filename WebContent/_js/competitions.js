@@ -35,6 +35,10 @@ $(function(){
 		
 		err_flag = err_flag+$('#groupName').validation_check(/^\S+$/,"Please enter " +
   		"valid group name without spaces or blank value");
+		err_flag = err_flag+$('#user2').validation_check(/^\S+$/,"Please enter " +
+  		"valid member name without spaces or blank value");
+		
+		if(err_flag == 0){
 		
 		$.ajax({
             type:"POST",
@@ -65,5 +69,6 @@ $(function(){
 					}
 				}
             });
+		}
 	})
 });

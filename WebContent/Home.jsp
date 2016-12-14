@@ -4,7 +4,11 @@
 
 <%@include file="dbConnect.jsp"%>
 <%@include file="header.jsp"%>
+
+<!--  scripts -->
 <script src="_js/SignUp.js" type="text/javascript"></script>
+
+<!-- Home page showing list of features -->
 <div class="container homeContainer">
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
@@ -57,15 +61,15 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6 col-md-3">
-		<a class="customLink" href="/CodeMateMVC/Profile">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/user.png" alt="user">
-				<div class="caption">
-					<h3>
-						<%=session.getAttribute("userHandle")%></h3>
-					<p>Go to user profile.</p>
+			<a class="customLink" href="/CodeMateMVC/Profile">
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/user.png" alt="user">
+					<div class="caption">
+						<h3>
+							<%=session.getAttribute("userHandle")%></h3>
+						<p>Go to user profile.</p>
+					</div>
 				</div>
-			</div>
 			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
@@ -93,15 +97,15 @@
 			</a>
 		</div>
 		<div class="col-sm-6 col-md-3">
-		<a class="customLink" href="Howto.jsp">
-			<div class="thumbnail">
-				<img class="thumbnail_image" src="_images/guide.png"
-					alt="leader board">
-				<div class="caption">
-					<h3>How to</h3>
-					<p>How to instructions.</p>
+			<a class="customLink" href="Howto.jsp">
+				<div class="thumbnail">
+					<img class="thumbnail_image" src="_images/guide.png"
+						alt="leader board">
+					<div class="caption">
+						<h3>How to</h3>
+						<p>How to instructions.</p>
+					</div>
 				</div>
-			</div>
 			</a>
 		</div>
 	</div>

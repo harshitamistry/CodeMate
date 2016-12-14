@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@include file="header.jsp"%>
 
-
+<!-- Showing details of platform features -->
 <div class="container-fluid HowToMain">
 	<div class="row textTutorial">
 		<div

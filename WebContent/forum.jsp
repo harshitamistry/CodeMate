@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@include file="header.jsp"%>
+
+<!-- scripts -->
 <script src="_js/forum.js"></script>
+
+<!-- shows list of questions in tabular format -->
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -21,16 +25,15 @@
 				<thead>
 					<tr>
 						<th>Questions</th>
-						<th>
-								<input type="text" class="form-control" id="question"
-									placeholder="Search for questions">
-							</th>
+						<th><input type="text" class="form-control" id="question"
+							placeholder="Search for questions"></th>
 					</tr>
 				</thead>
 				<c:forEach items="${questionList}" var="question">
 					<tr>
-						<td colspan="2"><a href="/CodeMateMVC/Forumquestion?id=${question.questionId}"><c:out value="${question.question}"></c:out></a>
-						</td>
+						<td colspan="2"><a
+							href="/CodeMateMVC/Forumquestion?id=${question.questionId}"><c:out
+									value="${question.question}"></c:out></a></td>
 					</tr>
 				</c:forEach>
 			</table>

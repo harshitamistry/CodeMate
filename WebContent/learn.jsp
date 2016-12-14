@@ -2,13 +2,15 @@
 	pageEncoding="ISO-8859-1"%>
 <%@include file="dbConnect.jsp"%>
 <%@include file="header.jsp"%>
+
+<!-- Shows list of tutorials -->
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6 col-md-offset-2 col-md-8">
 			<div class="list-group ">
-				
 
-			
+
+
 
 				<c:forEach var="tutorial" items="${tutorialList}">
 					<c:choose>
